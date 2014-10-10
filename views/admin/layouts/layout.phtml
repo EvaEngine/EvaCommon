@@ -46,8 +46,14 @@ $this->assets->outputCss('headerCss');
         <script type="text/javascript">
             if("ontouchend" in document) document.write("<script src='<?=$this->url->getStatic('/vendor/jquery-mobile-bower/js/jquery.mobile-1.4.2.js');?>'>"+"<"+"/script>");
         </script>
-		<script type="text/javascript" src="<?=$this->url->getStatic('/vendor/requirejs/require.js');?>" data-main="<?=$this->url->getStatic('/admin/js/main.js')?>"></script>
+		<script type="text/javascript" src="<?=$this->url->getStatic('/vendor/requirejs/require.js');?>"></script>
+        <script>
+        require.config({
+            baseUrl: "<?=$this->config->staticBaseUri?>/"
+        });
+        </script>
 		<script type="text/javascript" src="<?=$this->url->getStatic('/config.js');?>"></script>
+		<script type="text/javascript" src="<?=$this->url->getStatic('/admin/js/main.js');?>"></script>
 <?
 /*$this->assets
 ->collection('headerJs')
@@ -225,14 +231,5 @@ $this->assets->outputJs('headerJs');*/
 				<i class="icon-double-angle-up icon-only bigger-110"></i>
 			</a>
 		</div><!-- /.main-container -->
-
-		<!-- basic scripts -->
-
-		<!-- 
-        <script src="<?=$this->url->getStatic('/admin/js/main.js')?>"></script>
-		-->
-		
-		<script type="text/javascript">
-		</script>
 	</body>
 </html>
