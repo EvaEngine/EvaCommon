@@ -9,12 +9,6 @@ $this->assets
 ->collection('headerCss')
 ->addCss('/vendor/bootstrap/dist/css/bootstrap.css')
 ->addCss('/vendor/fontawesome3/css/font-awesome.css')
-->addCss('/vendor/bootstrap-datepicker/css/datepicker3.css')
-->addCss('/vendor/bootstrap-timepicker/css/bootstrap-timepicker.css')
-->addCss('/vendor/select2/select2.css')
-->addCss('/vendor/select2/select2-bootstrap.css')
-->addCss('/vendor/jquery-file-upload/css/jquery.fileupload.css')
-->addCss('/vendor/jquery-ui/themes/ui-lightness/jquery-ui.css')
 ->addCss('/vendor/dropzone/downloads/css/dropzone.css')
 ->addCss('/vendor/quotes-search/quotes-search.css')
 ->addCss('/vendor/ace-admin/css/ace-fonts.css')
@@ -36,12 +30,7 @@ $this->assets->outputCss('headerCss');
 		<!--[if lt IE 9]>
         <script src="<?=$this->url->getStatic('/vendor/html5shiv/dist/html5shiv.min.js')?>"></script>
         <script src="<?=$this->url->getStatic('/vendor/respond/dest/respond.min.js')?>"></script>
-        <script type="text/javascript" src="<?=$this->url->getStatic('/vendor/jquery-1.11.1/dist/jquery.js');?>"></script>
         <![endif]-->
-
-        <!--[if gt IE 8]><!-->
-        <script type="text/javascript" src="<?=$this->url->getStatic('/vendor/jquery/dist/jquery.js');?>"></script>
-        <!--<![endif]-->
 
         <script type="text/javascript">
             if("ontouchend" in document) document.write("<script src='<?=$this->url->getStatic('/vendor/jquery-mobile-bower/js/jquery.mobile-1.4.2.js');?>'>"+"<"+"/script>");
@@ -95,10 +84,6 @@ $this->assets->outputJs('headerJs');*/
 
 	<body>
 		<div class="navbar navbar-default" id="navbar">
-			<script type="text/javascript">
-				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
-			</script>
-
 			<div class="navbar-container" id="navbar-container">
 				<div class="navbar-header pull-left">
 					<a href="#" class="navbar-brand">
@@ -158,20 +143,12 @@ $this->assets->outputJs('headerJs');*/
 		</div>
 
 		<div class="main-container" id="main-container">
-			<script type="text/javascript">
-				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
-			</script>
-
 			<div class="main-container-inner">
 				<a class="menu-toggler" id="menu-toggler" href="#">
 					<span class="menu-text"></span>
 				</a>
 
 				<div class="sidebar" id="sidebar">
-					<script type="text/javascript">
-						try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
-					</script>
-
 					<div class="sidebar-shortcuts" id="sidebar-shortcuts">
 						<div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
 							<a class="btn btn-success" href="/admin/dashboard">
@@ -212,10 +189,6 @@ $this->assets->outputJs('headerJs');*/
 					<div class="sidebar-collapse" id="sidebar-collapse">
 						<i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i>
 					</div>
-
-					<script type="text/javascript">
-						try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
-					</script>
 				</div>
 
 				<div class="main-content">
