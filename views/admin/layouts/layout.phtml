@@ -18,7 +18,6 @@ $this->assets
 ->addCss('/vendor/ace-admin/css/ace-rtl.min.css');
 $this->assets->outputCss('headerCss');
 ?>
-
 		<!--[if IE 7]>
         <link rel="stylesheet" href="<?=$this->url->getStatic('/vendor/fontawesome3/css/font-awesome-ie7.css')?>" />
 		<![endif]-->
@@ -30,9 +29,6 @@ $this->assets->outputCss('headerCss');
         <script src="<?=$this->url->getStatic('/vendor/respond/dest/respond.min.js')?>"></script>
         <![endif]-->
 
-        <script type="text/javascript">
-            if("ontouchend" in document) document.write("<script src='<?=$this->url->getStatic('/vendor/jquery-mobile-bower/js/jquery.mobile-1.4.2.js');?>'>"+"<"+"/script>");
-        </script>
 		<script type="text/javascript" src="<?=$this->url->getStatic('/vendor/requirejs/require.js');?>"></script>
         <script>
         if (typeof define === "function" && define.amd) {
@@ -50,7 +46,6 @@ $this->assets
 $this->assets->outputJs('headerJs');
 ?>
 	</head>
-
 	<body>
 		<div class="navbar navbar-default" id="navbar">
 			<div class="navbar-container" id="navbar-container">
@@ -173,5 +168,10 @@ $this->assets->outputJs('headerJs');
 				<i class="icon-double-angle-up icon-only bigger-110"></i>
 			</a>
 		</div><!-- /.main-container -->
+<?
+$this->assets
+->collection('footerJs');
+$this->assets->outputJs('footerJs');
+?>
 	</body>
 </html>
