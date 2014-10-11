@@ -29,10 +29,11 @@ $this->assets->outputCss('headerCss');
         <script src="<?=$this->url->getStatic('/vendor/respond/dest/respond.min.js')?>"></script>
         <![endif]-->
 
-		<script type="text/javascript" src="<?=$this->url->getStatic('/vendor/requirejs/require.js');?>"></script>
+        <script type="text/javascript" src="<?=$this->url->getStatic('/vendor/requirejs/require.js');?>"></script>
         <script>
         if (typeof define === "function" && define.amd) {
             require.config({
+                urlArgs: "v=<?=$this->url->getVersion()?>",
                 baseUrl: "<?=$this->config->staticBaseUri?>/"
             });
         }
