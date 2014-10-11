@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--[if lt IE 8]>      <html lang="zh-CN" class="no-js lt-ie10 lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="zh-CN" class="no-js lt-ie10 lt-ie9 ie8"> <![endif]-->
+<!--[if IE 9]>         <html lang="zh-CN" class="no-js lt-ie10 ie9"> <![endif]-->
+<!--[if gt IE 9]><!--> <html lang="zh-CN" class="no-js"> <!--<![endif]-->
 	<head>
 		<meta charset="utf-8" />
         <title><?=$this->placeholder->block('title', 'EvaEngine Admin');?></title>
@@ -9,8 +12,6 @@ $this->assets
 ->collection('headerCss')
 ->addCss('/vendor/bootstrap/dist/css/bootstrap.css')
 ->addCss('/vendor/fontawesome3/css/font-awesome.css')
-->addCss('/vendor/dropzone/downloads/css/dropzone.css')
-->addCss('/vendor/quotes-search/quotes-search.css')
 ->addCss('/vendor/ace-admin/css/ace-fonts.css')
 ->addCss('/vendor/ace-admin/css/ace.min.css')
 ->addCss('/vendor/ace-admin/css/ace-skins.min.css')
@@ -19,14 +20,11 @@ $this->assets->outputCss('headerCss');
 ?>
 
 		<!--[if IE 7]>
-        <link rel="stylesheet" href="/vendor/js/typeahead/typeaheadjs.css" />
         <link rel="stylesheet" href="<?=$this->url->getStatic('/vendor/fontawesome3/css/font-awesome-ie7.css')?>" />
 		<![endif]-->
-
 		<!--[if lte IE 8]>
         <link rel="stylesheet" href="<?=$this->url->getStatic('/vendor/ace-admin/css/ace-ie.min.css')?>" />
 		<![endif]-->
-
 		<!--[if lt IE 9]>
         <script src="<?=$this->url->getStatic('/vendor/html5shiv/dist/html5shiv.min.js')?>"></script>
         <script src="<?=$this->url->getStatic('/vendor/respond/dest/respond.min.js')?>"></script>
@@ -37,49 +35,20 @@ $this->assets->outputCss('headerCss');
         </script>
 		<script type="text/javascript" src="<?=$this->url->getStatic('/vendor/requirejs/require.js');?>"></script>
         <script>
-        require.config({
-            baseUrl: "<?=$this->config->staticBaseUri?>/"
-        });
+        if (typeof define === "function" && define.amd) {
+            require.config({
+                baseUrl: "<?=$this->config->staticBaseUri?>/"
+            });
+        }
         </script>
-		<script type="text/javascript" src="<?=$this->url->getStatic('/config.js');?>"></script>
-		<script type="text/javascript" src="<?=$this->url->getStatic('/admin/js/main.js');?>"></script>
 <?
-/*$this->assets
+$this->assets
 ->collection('headerJs')
-->addJs('/vendor/underscore/underscore.js')
-->addJs('/vendor/jquery-ui/jquery-ui.js')
-->addJs('/vendor/bootstrap/dist/js/bootstrap.js')
-->addJs('/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js')
-->addJs('/vendor/bootstrap-datepicker/js/locales/bootstrap-datepicker.zh-CN.js')
-->addJs('/vendor/bootstrap-timepicker/js/bootstrap-timepicker.js')
-->addJs('/vendor/typeahead.js/dist/typeahead.bundle.js')
-->addJs('/vendor/moment/min/moment-with-locales.js')
-->addJs('/vendor/jsUri/Uri.js')
-->addJs('/vendor/parsleyjs/dist/parsley.js')
-->addJs('/vendor/parsleyjs/dist/parsley.remote.js')
-->addJs('/vendor/ckeditor/ckeditor.js')
-->addJs('/vendor/ckeditor/adapters/jquery.js')
-->addJs('/vendor/noty/js/noty/packaged/jquery.noty.packaged.js')
-->addJs('/vendor/blockui/jquery.blockUI.js')
-->addJs('/vendor/jquery-file-upload/js/jquery.fileupload.js')
-->addJs('/vendor/dropzone/downloads/dropzone.js')
-->addJs('/vendor/select2/select2.js')
-->addJs('/vendor/select2/select2_locale_zh-CN.js')
-->addJs('/vendor/epiceditor/epiceditor/js/epiceditor.js')
-->addJs('/vendor/art-template/dist/template-native.js')
-->addJs('/vendor/wscn-jscore/wscn_util.js')
-->addJs('/vendor/quotes-search/quotes-search.js')
-->addJs('/vendor/pinyin/pinyin.js')
-->addJs('/vendor/ace-admin/js/ace.js')
-->addJs('/vendor/ace-admin/js/ace-elements.js')
-->addJs('/vendor/ace-admin/js/ace-extra.js')
+->addJs('/config.js')
+->addJs('/admin/js/main.js')
 ;
-$this->assets->outputJs('headerJs');*/
+$this->assets->outputJs('headerJs');
 ?>
-
-<!--
-		<script type="text/javascript" src="/assets/js/jquery.ui.touch-punch.min.js"></script>
--->
 	</head>
 
 	<body>
