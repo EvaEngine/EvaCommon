@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+        <title><?=$this->placeholder->block('title', 'EvaEngine Admin');?></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<?
+$this->assets
+->collection('headerCss')
+->addCss('/vendor/bootstrap/dist/css/bootstrap.css')
+->addCss('/vendor/fontawesome3/css/font-awesome.css')
+->addCss('/vendor/bootstrap-datepicker/css/datepicker3.css')
+->addCss('/vendor/bootstrap-timepicker/css/bootstrap-timepicker.css')
+->addCss('/vendor/select2/select2.css')
+->addCss('/vendor/select2/select2-bootstrap.css')
+->addCss('/vendor/jquery-file-upload/css/jquery.fileupload.css')
+->addCss('/vendor/jquery-ui/themes/ui-lightness/jquery-ui.css')
+->addCss('/vendor/dropzone/downloads/css/dropzone.css')
+->addCss('/vendor/quotes-search/quotes-search.css')
+->addCss('/vendor/ace-admin/css/ace-fonts.css')
+->addCss('/vendor/ace-admin/css/ace.min.css')
+->addCss('/vendor/ace-admin/css/ace-skins.min.css')
+->addCss('/vendor/ace-admin/css/ace-rtl.min.css')
+->addCss('/admin/css/typeaheadjs.css')
+;
+$this->assets->outputCss('headerCss');
+?>
+
+		<!--[if IE 7]>
+        <link rel="stylesheet" href="/vendor/js/typeahead/typeaheadjs.css" />
+        <link rel="stylesheet" href="<?=$this->url->getStatic('/vendor/fontawesome3/css/font-awesome-ie7.css')?>" />
+		<![endif]-->
+
+		<!--[if lte IE 8]>
+        <link rel="stylesheet" href="<?=$this->url->getStatic('/vendor/ace-admin/css/ace-ie.min.css')?>" />
+		<![endif]-->
+
+		<!--[if lt IE 9]>
+        <script src="<?=$this->url->getStatic('/vendor/html5shiv/dist/html5shiv.min.js')?>"></script>
+        <script src="<?=$this->url->getStatic('/vendor/respond/dest/respond.min.js')?>"></script>
+        <script type="text/javascript" src="<?=$this->url->getStatic('/vendor/jquery-1.11.1/dist/jquery.js');?>"></script>
+        <![endif]-->
+
+        <!--[if gt IE 8]><!-->
+        <script type="text/javascript" src="<?=$this->url->getStatic('/vendor/jquery/dist/jquery.js');?>"></script>
+        <!--<![endif]-->
+
+        <script type="text/javascript">
+            if("ontouchend" in document) document.write("<script src='<?=$this->url->getStatic('/vendor/jquery-mobile-bower/js/jquery.mobile-1.4.2.js');?>'>"+"<"+"/script>");
+        </script>
+
+<?
+$this->assets
+->collection('headerJs')
+->addJs('/vendor/underscore/underscore.js')
+->addJs('/vendor/jquery-ui/jquery-ui.js')
+->addJs('/vendor/bootstrap/dist/js/bootstrap.js')
+->addJs('/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js')
+->addJs('/vendor/bootstrap-datepicker/js/locales/bootstrap-datepicker.zh-CN.js')
+->addJs('/vendor/bootstrap-timepicker/js/bootstrap-timepicker.js')
+->addJs('/vendor/typeahead.js/dist/typeahead.bundle.js')
+->addJs('/vendor/moment/min/moment-with-locales.js')
+->addJs('/vendor/jsUri/Uri.js')
+->addJs('/vendor/parsleyjs/dist/parsley.js')
+->addJs('/vendor/parsleyjs/dist/parsley.remote.js')
+->addJs('/vendor/ckeditor/ckeditor.js')
+->addJs('/vendor/ckeditor/adapters/jquery.js')
+->addJs('/vendor/noty/js/noty/packaged/jquery.noty.packaged.js')
+->addJs('/vendor/blockui/jquery.blockUI.js')
+->addJs('/vendor/jquery-file-upload/js/jquery.fileupload.js')
+->addJs('/vendor/dropzone/downloads/dropzone.js')
+->addJs('/vendor/select2/select2.js')
+->addJs('/vendor/select2/select2_locale_zh-CN.js')
+->addJs('/vendor/epiceditor/epiceditor/js/epiceditor.js')
+->addJs('/vendor/art-template/dist/template-native.js')
+->addJs('/vendor/wscn-jscore/wscn_util.js')
+->addJs('/vendor/quotes-search/quotes-search.js')
+->addJs('/vendor/pinyin/pinyin.js')
+->addJs('/vendor/ace-admin/js/ace.js')
+->addJs('/vendor/ace-admin/js/ace-elements.js')
+->addJs('/vendor/ace-admin/js/ace-extra.js')
+;
+$this->assets->outputJs('headerJs');
+?>
+
+<!--
+		<script type="text/javascript" src="/assets/js/jquery.ui.touch-punch.min.js"></script>
+-->
+	</head>
+
+	<body>
+		<div class="navbar navbar-default" id="navbar">
+			<script type="text/javascript">
+				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
+			</script>
+
+			<div class="navbar-container" id="navbar-container">
+				<div class="navbar-header pull-left">
+					<a href="#" class="navbar-brand">
+						<small>
+							<i class="icon-leaf"></i>
+                            <?=$this->tag->_('EvaEngine');?>	
+						</small>
+					</a><!-- /.brand -->
+				</div><!-- /.navbar-header -->
+
+				<div class="navbar-header pull-right" role="navigation">
+					<ul class="nav ace-nav">
+
+						<li class="light-blue">
+                        <?if(isset($authIdentity)):?>
+							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                                <img class="nav-user-photo" src="<?=$this->tag->gravatar($authIdentity['email'])?>" alt="" />
+								<span class="user-info">
+									<small>Welcome,</small>
+                                    <?=$authIdentity['username']?>
+								</span>
+
+								<i class="icon-caret-down"></i>
+							</a>
+                        <?endif?>
+
+							<ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                                <!--
+								<li>
+									<a href="#">
+										<i class="icon-cog"></i>
+										Settings
+									</a>
+								</li>
+
+								<li>
+									<a href="#">
+										<i class="icon-user"></i>
+										Profile
+									</a>
+								</li>
+                                -->
+
+								<li class="divider"></li>
+
+								<li>
+									<a href="/logout">
+										<i class="icon-off"></i>
+										Logout
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul><!-- /.ace-nav -->
+				</div><!-- /.navbar-header -->
+			</div><!-- /.container -->
+		</div>
+
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<div class="main-container-inner">
+				<a class="menu-toggler" id="menu-toggler" href="#">
+					<span class="menu-text"></span>
+				</a>
+
+				<div class="sidebar" id="sidebar">
+					<script type="text/javascript">
+						try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
+					</script>
+
+					<div class="sidebar-shortcuts" id="sidebar-shortcuts">
+						<div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+							<a class="btn btn-success" href="/admin/dashboard">
+								<i class="icon-signal"></i>
+							</a>
+
+                            <a class="btn btn-info" href="/admin/post/create">
+								<i class="icon-pencil"></i>
+							</a>
+
+                            <a class="btn btn-warning" href="/admin/user">
+								<i class="icon-group"></i>
+							</a>
+
+                            <a class="btn btn-danger" href="/admin/media/upload">
+								<i class="icon-upload"></i>
+							</a>
+						</div>
+
+						<div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+							<span class="btn btn-success"></span>
+
+							<span class="btn btn-info"></span>
+
+							<span class="btn btn-warning"></span>
+
+							<span class="btn btn-danger"></span>
+						</div>
+					</div><!-- #sidebar-shortcuts -->
+
+					<ul class="nav nav-list">
+                        <?$moduleManager = $this->moduleManager;$modules = $moduleManager->getModules();?>
+                        <?foreach($modules as $moduleName => $module):?>
+                        <?$moduleManager->getModuleAdminMenu($moduleName)?>
+                        <?endforeach?>
+					</ul><!-- /.nav-list -->
+
+					<div class="sidebar-collapse" id="sidebar-collapse">
+						<i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i>
+					</div>
+
+					<script type="text/javascript">
+						try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
+					</script>
+				</div>
+
+				<div class="main-content">
+                    <?=$this->tag->flashOutput()?>
+                    <?=$this->getContent()?>
+
+				</div><!-- /.main-content -->
+
+
+			</div><!-- /.main-container-inner -->
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="icon-double-angle-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+
+		<!-- basic scripts -->
+
+
+        <script src="<?=$this->url->getStatic('/admin/js/main.js')?>"></script>
+		<script type="text/javascript">
+		</script>
+	</body>
+</html>

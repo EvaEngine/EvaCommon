@@ -1,0 +1,215 @@
+<div class="breadcrumbs" id="breadcrumbs">
+    <script type="text/javascript">
+        try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+    </script>
+
+    <ul class="breadcrumb">
+        <li>
+        <i class="icon-home home-icon"></i>
+        <a href="/admin/dashboard">Home</a>
+        </li>
+    </ul><!-- .breadcrumb -->
+
+    <div class="nav-search" id="nav-search">
+        <form class="form-search">
+            <span class="input-icon">
+                <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+                <i class="icon-search nav-search-icon"></i>
+            </span>
+        </form>
+    </div><!-- #nav-search -->
+</div>
+
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            Dashboard
+            <small>
+                <i class="icon-double-angle-right"></i>
+                overview &amp; stats
+            </small>
+        </h1>
+    </div><!-- /.page-header -->
+
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- PAGE CONTENT BEGINS -->
+
+            <div class="row">
+                <div class="space-6"></div>
+
+                <div class="col-sm-12 infobox-container">
+
+                    <div class="widget-box">
+                        <div class="widget-header widget-header-flat widget-header-small">
+                            <h5>
+                                <i class="icon-signal"></i>
+                                Traffic Sources
+                            </h5>
+
+                            <div class="widget-toolbar no-border">
+                            </div>
+                        </div>
+
+                        <div class="widget-body">
+                            <div class="widget-main clearfix">
+                                <div class="rows">
+                                    <div class="col-sm-3">
+                                        <section id="view-selector"></section>
+                                    </div>
+
+                                    <div class="col-sm-8">
+                                        <section id="auth-button"></section>
+                                        <section id="timeline"></section>
+                                    </div>
+                                </div>
+                            </div><!-- /widget-main -->
+                        </div><!-- /widget-body -->
+                    </div>
+
+
+                    <!-- Step 2: Load the library. -->
+                    <script>
+                        (function(w,d,s,g,js,fjs){
+                                g=w.gapi||(w.gapi={});g.analytics={q:[],ready:function(cb){this.q.push(cb)}};
+                                js=d.createElement(s);fjs=d.getElementsByTagName(s)[0];
+                                js.src='https://apis.google.com/js/platform.js';
+                                fjs.parentNode.insertBefore(js,fjs);js.onload=function(){g.load('analytics')};
+                        }(window,document,'script'));
+                    </script>
+
+                    <script>
+                        gapi.analytics.ready(function() {
+                                var CLIENT_ID = '542384487272-oitomj6fi0jm242pjo46la4g5lpe30fa.apps.googleusercontent.com';
+                                gapi.analytics.auth.authorize({
+                                        container: 'auth-button',
+                                        clientid: CLIENT_ID,
+                                });
+
+                                var viewSelector = new gapi.analytics.ViewSelector({
+                                        container: 'view-selector'
+                                });
+                                var timeline = new gapi.analytics.googleCharts.DataChart({
+                                        reportType: 'ga',
+                                        query: {
+                                                'dimensions': 'ga:date',
+                                                'metrics': 'ga:sessions',
+                                                'start-date': '30daysAgo',
+                                                'end-date': 'yesterday',
+                                        },
+                                        chart: {
+                                                type: 'LINE',
+                                                container: 'timeline',
+                                                options : {
+                                                    width : '100%'
+                                                }
+
+                                        }
+                                });
+
+                                // Step 6: Hook up the components to work together.
+                                gapi.analytics.auth.on('success', function(response) {
+                                        viewSelector.execute();
+                                });
+                                viewSelector.on('change', function(ids) {
+                                        var newIds = {
+                                                query: {
+                                                        ids: ids
+                                                }
+                                        }
+                                        timeline.set(newIds).execute();
+                                });
+                        });
+                    </script>
+                </div>
+            </div><!-- /row -->
+
+            <div class="hr hr32 hr-dotted"></div>
+
+            <div class="row">
+                <div class="col-sm-5">
+                    <div class="widget-box transparent">
+                        <div class="widget-header widget-header-flat">
+                            <h4 class="lighter">
+                                <i class="icon-star orange"></i>
+                                Recent Posts
+                            </h4>
+
+                            <div class="widget-toolbar">
+                                <a data-action="collapse" href="#">
+                                    <i class="icon-chevron-up"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="widget-body">
+                            <div class="widget-main no-padding">
+                                <table class="table table-bordered table-striped">
+                                    <thead class="thin-border-bottom">
+                                        <tr>
+                                            <th>
+                                                <i class="icon-caret-right blue"></i>
+                                                Title
+                                            </th>
+
+                                            <th>
+                                                <i class="icon-caret-right blue"></i>
+                                                Author
+                                            </th>
+
+                                            <th class="hidden-480">
+                                                <i class="icon-caret-right blue"></i>
+                                                Created At
+                                            </th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr>
+                                            <td>Title</td>
+                                            <td>
+                                                Author
+                                            </td>
+                                            <td class="hidden-480">
+                                                <span class="label label-info arrowed-right arrowed-in">time</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div><!-- /widget-main -->
+                        </div><!-- /widget-body -->
+                    </div><!-- /widget-box -->
+                </div>
+
+                <div class="col-sm-7">
+                    <div class="widget-box transparent">
+                        <div class="widget-header widget-header-flat">
+
+<?php
+$bookmark = <<<'FOOBAR'
+javascript:(!function (){var livenewsDetailUrl = "/livenews/detail",livenewsAdminUrl = "http://admin.wallstreetcn.com/admin/livenews/news/edit/",newsDetailUrl = "/node",newsDetailAdminUrl = "http://admin.wallstreetcn.com/admin/post/edit/",livenewsUrl = "/livenews",url = document.location.href;if (url.indexOf(livenewsDetailUrl) != -1) {var livenewsId = document.getElementsByClassName("admin-control-livenews");if (livenewsId.length > 0) {document.location.href = livenewsAdminUrl + livenewsId[0].getAttribute("value");}} else if (url.indexOf(newsDetailUrl) != -1) {var newsId = document.getElementsByClassName("admin-control-post");document.location.href = newsDetailAdminUrl + newsId[0].getAttribute("value");} else if (url.indexOf(livenewsUrl)) {var newsList = document.getElementsByClassName("news");for (var i = 0; i < newsList.length; i++) {if (!!newsList[i].getAttribute("data-utm")) {var delSpan = document.createElement("span"),id = newsList[i].getAttribute("id").split("-")[1];delSpan.className = "icon fa fa-times";delSpan.style.left = "-30px";delSpan.style.cursor = "pointer";delSpan.onclick = (function ($id) {return function () {document.location.href = livenewsAdminUrl + $id}})(id);newsList[i].appendChild(delSpan);}}}}());
+FOOBAR;
+?>
+<a href="<?=$this->escaper->escapeHtmlAttr($bookmark)?>" class="btn btn-default">管理</a> ←请将左侧链接拖拽至书签栏
+
+
+                        </div><!-- /widget-body -->
+                    </div><!-- /widget-box -->
+                </div>
+                <div class="col-sm-7">
+                    <div class="widget-box transparent">
+                        <div class="widget-header widget-header-flat">
+
+                            <a class="btn btn-info" href="<?=$this->config->baseUri?>/?_eva_refresh_dispatch_cache=1" target="_blank">Flush cache of home page</a>
+
+                        </div><!-- /widget-body -->
+                    </div><!-- /widget-box -->
+                </div>
+
+            </div>
+
+            <div class="hr hr32 hr-dotted"></div>
+
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+</div><!-- PAGE CONTENT ENDS -->

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+	<head>
+		<meta charset="utf-8" />
+        <title><?=$this->placeholder->block('title', 'EvaEngine Admin');?></title>
+
+		<meta name="description" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <?
+            $this->assets
+            ->collection('headerCss')
+            ->addCss('/vendor/bootstrap/dist/css/bootstrap.css')
+            ->addCss('/vendor/fontawesome3/css/font-awesome.css')
+            ->addCss('/vendor/ace-admin/css/ace-fonts.css')
+            ->addCss('/vendor/ace-admin/css/ace.min.css')
+            ->addCss('/vendor/ace-admin/css/ace-part2.min.css')
+            ->addCss('/vendor/ace-admin/css/ace-rtl.min.css');
+            $this->assets->outputCss('headerCss');
+        ?>
+        <!--[if IE 7]>
+        <link rel="stylesheet" href="<?=$this->url->getStatic('/vendor/fontawesome3/css/font-awesome-ie7.css')?>" />
+        <![endif]-->
+
+        <!--[if lt IE 9]>
+        <script src="<?=$this->url->getStatic('/vendor/html5shiv/dist/html5shiv.min.js')?>"></script>
+        <script src="<?=$this->url->getStatic('/vendor/respond/dest/respond.min.js')?>"></script>
+        <script src="<?=$this->url->getStatic('/vendor/jquery-1.11.1/dist/jquery.js');?>"></script>
+        <![endif]-->
+
+        <!--[if gt IE 8]><!-->
+        <script type="text/javascript" src="<?=$this->url->getStatic('/vendor/jquery/dist/jquery.js');?>"></script>
+        <!--<![endif]-->
+        <script src="<?=$this->url->getStatic('/vendor/ace-admin/js/ace-extra.js')?>"></script>
+    </head>
+
+    <body class="login-layout">
+        <div class="main-container">
+            <div class="main-content">
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1">
+                        <div class="login-container">
+                            <div class="center">
+                                <h1>
+                                    <i class="icon-leaf green"></i>
+                                    <span class="white"><?=$this->tag->_('EvaEngine')?></span>
+                                </h1>
+                                <h4 class="blue">&copy; WallstreetCN</h4>
+                            </div>
+
+                            <div class="space-6"></div>
+
+                            <div class="position-relative">
+                                <?=$this->tag->flashOutput()?>
+                                <?=$this->getContent()?>
+                            </div><!-- /position-relative -->
+                        </div>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div>
+        </div><!-- /.main-container -->
+
+        <!-- basic scripts -->
+
+        <?
+        $this->assets
+        ->collection('footerJs')
+        ->addJs('/vendor/bootstrap/dist/js/bootstrap.js')
+        ->addJs('/vendor/parsleyjs/dist/parsley.js')
+        ->addJs('/vendor/parsleyjs/dist/parsley.remote.js')
+        ;
+        $this->assets->outputJs('footerJs');
+    ?>
+
+        <script type="text/javascript">
+            if("ontouchend" in document) document.write("<script src='<?=$this->url->getStatic('/vendor/jquery-mobile-bower/js/jquery.mobile-1.4.2.js');?>'>"+"<"+"/script>");
+        </script>
+
+
+        <script type="text/javascript">
+            function show_box(id) {
+                    jQuery('.widget-box.visible').removeClass('visible');
+                    jQuery('#'+id).addClass('visible');
+                }
+
+                $(document).ready(function () {
+                    $('form').parsley({
+                        successClass: "has-success",
+                        errorClass: "has-error",
+                        classHandler: function(el) {
+                            return el.$element.closest(".form-group");
+                        },
+
+                        errorsWrapper: "<span class='help-block'></span>",
+                        errorTemplate: "<span></span>"
+                    });
+
+                });
+            </script>
+        </body>
+    </html>
