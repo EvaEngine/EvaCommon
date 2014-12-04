@@ -44,7 +44,6 @@ $this->assets->outputCss('headerCss');
 $this->assets
 ->collection('headerJs')
 ->addJs('/admin/js/require-config.js')
-->addJs('/admin/js/main.js')
 ;
 $this->assets->outputJs('headerJs');
 ?>
@@ -173,7 +172,8 @@ $this->assets->outputJs('headerJs');
 		</div><!-- /.main-container -->
 <?
 $this->assets
-->collection('footerJs');
+->collection('footerJs')
+    ->addJs('/admin/js/default-action.js');
 $this->assets->outputJs('footerJs');
 ?>
 	</body>
