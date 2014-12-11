@@ -15,6 +15,6 @@
     },
     "autoload": {
         "classmap": ["Module.php"],
-        "psr-4": {"Eva\\EvaCommon\\": "src/eva-common"}
+        "psr-4": {"Eva\\EvaCommon\\": "src/EvaCommon"}
     }
 }
