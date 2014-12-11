@@ -1,5 +1,5 @@
 {
-    "name": "allovince/evacommon",
+    "name": "evaengine/eva-common",
     "description": "Basic Common Module of EvaEngine",
     "license": "BSD-3-Clause",
     "minimum-stability": "dev",
