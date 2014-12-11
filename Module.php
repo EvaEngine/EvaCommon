@@ -12,7 +12,7 @@ class Module implements ModuleDefinitionInterface, StandardInterface
     public static function registerGlobalAutoloaders()
     {
         return array(
-            'Eva\EvaCommon' => __DIR__ . '/src/EvaCommon',
+            'Eva\EvaCommon' => __DIR__ . '/src/eva-common',
         );
     }
 
