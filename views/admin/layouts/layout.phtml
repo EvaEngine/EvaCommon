@@ -44,7 +44,9 @@ $this->assets->outputCss('headerCss');
 $this->assets
 ->collection('headerJs')
 //->addJs('/admin/js/require-config.js')
-->addJs('/require-config.js');
+->addJs('/require-config.js')
+->addJs('/admin/js/require-shim.js');
+
 $this->assets->outputJs('headerJs');
 ?>
 	</head>
