@@ -226,7 +226,7 @@ FOOBAR;
                         <div class="widget-header widget-header-flat">
 <?php
 $bookmarkComment = <<<'FOOBAR'
-javascript:(!function (){var newsDetailUrl = "/node",newsDetailAdminUrl = "http://admin.wallstreetcn.com/admin/thread/",url = document.location.href;if (url.indexOf(newsDetailUrl) != -1) {var newsId = document.getElementsByClassName("wscn-cm-comment");document.location.href = newsDetailAdminUrl + newsId[0].getAttribute("data-thread-id");}}());
+javascript:(!function (){var newsDetailUrl = "/node",newsDetailAdminUrl = "http://admin.wallstreetcn.com/admin/thread/",url = document.location.href;if (url.indexOf(newsDetailUrl) != -1) {var newsId = document.getElementsByClassName("wscn-cm-comment");window.open(newsDetailAdminUrl + newsId[0].getAttribute('data-thread-id'),'_blank');}}());
 FOOBAR;
 ?>
 <a href="<?=$this->escaper->escapeHtmlAttr($bookmarkComment)?>" class="btn btn-default" >管理评论</a> ←请将左侧链接拖拽至书签栏
