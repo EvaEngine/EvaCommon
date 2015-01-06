@@ -1,7 +1,21 @@
 <div class="breadcrumbs" id="breadcrumbs">
     <script type="text/javascript">
-        try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+//        try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+    (function(root, factory){
+        if (typeof define === 'function' && define.amd) {
+            require(["ace"], factory);
+        } else {
+            factory(root.ace);
+        }
+    })(this, function(ace) {
+        try {
+            ace.settings.check('breadcrumbs', 'fixed')
+        } catch (e) {
+            console.log(e)
+        }
+    })
     </script>
+
 
     <ul class="breadcrumb">
         <li>
@@ -70,11 +84,27 @@
 
                     <!-- Step 2: Load the library. -->
                     <script>
-                        (function(w,d,s,g,js,fjs){
-                                g=w.gapi||(w.gapi={});g.analytics={q:[],ready:function(cb){this.q.push(cb)}};
-                                js=d.createElement(s);fjs=d.getElementsByTagName(s)[0];
-                                js.src='https://apis.google.com/js/platform.js';
-                                fjs.parentNode.insertBefore(js,fjs);js.onload=function(){g.load('analytics')};
+                        (function (w,d,s,g,js,fjs){
+
+                            g = w.gapi || (w.gapi = {});
+                            g.analytics = {
+                                q: [], ready: function (cb) {
+                                    this.q.push(cb)
+                                }
+                            };
+                            //在onload事件发生时执行，以免影响$.ready（default-action.js）中代码的执行
+                            function loadGoogleAPI() {
+                                js = d.createElement(s);
+                                fjs = d.getElementsByTagName(s)[0];
+                                js.async = true;
+                                js.src = 'https://apis.google.com/js/platform.js';
+                                fjs.parentNode.insertBefore(js, fjs);
+                                js.onload = function () {
+                                    g.load('analytics')
+                                };
+                            }
+                            if (w.addEventListener) { w.addEventListener("load", loadGoogleAPI, false); }
+                            else if (w.attachEvent) { w.attachEvent("onload",loadGoogleAPI); }
                         }(window,document,'script'));
                     </script>
 
@@ -83,7 +113,7 @@
                                 var CLIENT_ID = '542384487272-oitomj6fi0jm242pjo46la4g5lpe30fa.apps.googleusercontent.com';
                                 gapi.analytics.auth.authorize({
                                         container: 'auth-button',
-                                        clientid: CLIENT_ID,
+                                        clientid: CLIENT_ID
                                 });
 
                                 var viewSelector = new gapi.analytics.ViewSelector({
@@ -95,7 +125,7 @@
                                                 'dimensions': 'ga:date',
                                                 'metrics': 'ga:sessions',
                                                 'start-date': '30daysAgo',
-                                                'end-date': 'yesterday',
+                                                'end-date': 'yesterday'
                                         },
                                         chart: {
                                                 type: 'LINE',
