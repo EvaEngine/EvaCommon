@@ -98,6 +98,7 @@
                     $('.widget-box.visible').removeClass('visible');
                     $('#' + id).addClass('visible');
                 }
+                //忘记密码和注册，写在dom中的onclick属性下，因此加入在window下
                 window.show_box = show_box
                 $(document).ready(function () {
                     $('form').parsley({
