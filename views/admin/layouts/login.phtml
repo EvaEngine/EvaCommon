@@ -24,17 +24,32 @@
         <!--[if IE 7]>
         <link rel="stylesheet" href="<?=$this->url->getStatic('/vendor/fontawesome3/css/font-awesome-ie7.css')?>" />
         <![endif]-->
-
+        <!--[if lte IE 8]>
+        <link rel="stylesheet" href="<?=$this->url->getStatic('/vendor/ace-admin/css/ace-ie.min.css')?>" />
+        <![endif]-->
         <!--[if lt IE 9]>
         <script src="<?=$this->url->getStatic('/vendor/html5shiv/dist/html5shiv.min.js')?>"></script>
         <script src="<?=$this->url->getStatic('/vendor/respond/dest/respond.min.js')?>"></script>
-        <script src="<?=$this->url->getStatic('/vendor/jquery-1.11.1/dist/jquery.js');?>"></script>
         <![endif]-->
 
-        <!--[if gt IE 8]><!-->
-        <script type="text/javascript" src="<?=$this->url->getStatic('/vendor/jquery/dist/jquery.js');?>"></script>
-        <!--<![endif]-->
-        <script src="<?=$this->url->getStatic('/vendor/ace-admin/js/ace-extra.js')?>"></script>
+        <script type="text/javascript" src="<?=$this->url->getStatic('/vendor/requirejs/require.js');?>"></script>
+        <script>
+            if (typeof define === "function" && define.amd) {
+                require.config({
+                    urlArgs: "v=<?=$this->url->getVersion()?>",
+                    baseUrl: "<?=$this->config->staticBaseUri?>/"
+                });
+            }
+        </script>
+        <?
+        $this->assets
+            ->collection('headerJs')
+//->addJs('/admin/js/require-config.js')
+            ->addJs('/require-config.js')
+            ->addJs('/admin/js/require-shim.js');
+
+        $this->assets->outputJs('headerJs');
+        ?>
     </head>
 
     <body class="login-layout">
@@ -65,32 +80,30 @@
 
         <!-- basic scripts -->
 
-        <?
-        $this->assets
-        ->collection('footerJs')
-        ->addJs('/vendor/bootstrap/dist/js/bootstrap.js')
-        ->addJs('/vendor/parsleyjs/dist/parsley.js')
-        ->addJs('/vendor/parsleyjs/dist/parsley.remote.js')
-        ;
-        $this->assets->outputJs('footerJs');
-    ?>
+<!--        --><?//
+//        $this->assets
+//        ->collection('footerJs')
+//        ->addJs('/vendor/bootstrap/dist/js/bootstrap.js')
+//        ->addJs('/vendor/parsleyjs/dist/parsley.js')
+//        ->addJs('/vendor/parsleyjs/dist/parsley.remote.js')
+//        ;
+//        $this->assets->outputJs('footerJs');
+//    ?>
 
-        <script type="text/javascript">
-            if("ontouchend" in document) document.write("<script src='<?=$this->url->getStatic('/vendor/jquery-mobile-bower/js/jquery.mobile-1.4.2.js');?>'>"+"<"+"/script>");
-        </script>
 
 
         <script type="text/javascript">
-            function show_box(id) {
-                    jQuery('.widget-box.visible').removeClass('visible');
-                    jQuery('#'+id).addClass('visible');
+            require(['jquery','jquery.parsley','parsley.remote','bootstrap'],function($){
+                function show_box(id) {
+                    $('.widget-box.visible').removeClass('visible');
+                    $('#' + id).addClass('visible');
                 }
-
+                window.show_box = show_box
                 $(document).ready(function () {
                     $('form').parsley({
                         successClass: "has-success",
                         errorClass: "has-error",
-                        classHandler: function(el) {
+                        classHandler: function (el) {
                             return el.$element.closest(".form-group");
                         },
 
@@ -99,6 +112,15 @@
                     });
 
                 });
-            </script>
+            })
+
+        </script>
+
+        <?
+        $this->assets
+            ->collection('footerJs')
+            ->addJs('/admin/js/default-action.js');
+        $this->assets->outputJs('footerJs');
+        ?>
         </body>
     </html>
