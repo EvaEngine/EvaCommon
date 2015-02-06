@@ -2,7 +2,6 @@
     "name": "evaengine/eva-common",
     "description": "Basic Common Module of EvaEngine",
     "license": "BSD-3-Clause",
-    "minimum-stability": "dev",
     "authors": [
         {
             "name": "AlloVince",
@@ -11,7 +10,7 @@
         }
     ],
     "require": {
-        "evaengine/evaengine": "dev-master"
+        "evaengine/evaengine": "~0.1"
     },
     "autoload": {
         "classmap": ["Module.php"],
