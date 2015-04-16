@@ -10,7 +10,7 @@ class SmsController extends Controller
     /**
      * 发送验证码
      * @param mobile 待发送手机号
-     * @param type   验证码类型，如注册，找回密码
+     * @param type   验证码类型，如注册，找回密码,具体见配置文件 template
      * @return string
     */
     public function captchaAction()
