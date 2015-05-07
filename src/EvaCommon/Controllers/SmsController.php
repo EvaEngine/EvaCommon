@@ -73,6 +73,18 @@ class SmsController extends Controller
 
         $cache = $this->getDI()->get('modelsCache');
 
+        $mobileCountKey = 'mobile_count' . $mobile;
+        $mobileCountKey = md5($mobileCountKey);
+        if ($cache->exists($mobileCountKey)) {
+            $mobileCount = $cache->get($mobileCountKey);
+            $cache->save($mobileCountKey, $mobileCount+1, 5 * 60);
+            if ($mobileCount > 5) { //尝试超过5次
+                return $this->showResponseAsJson(['ret' => 2, 'message' => 'has no chance to try']);
+            }
+        } else {
+            $cache->save($mobileCountKey, 0, 5 * 60);
+        }
+
         $cacheKey = 'sms_captcha_' . $type . $mobile;
         if ($cache->exists($cacheKey)) {
             $data = $cache->get($cacheKey);
